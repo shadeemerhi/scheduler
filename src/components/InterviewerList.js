@@ -5,7 +5,6 @@ import "components/InterviewerList.scss";
 export default function InterviewerList(props) {
 
   const { interviewers } = props;
-  console.log(interviewers);
 
   return(
     <section className="interviewers">

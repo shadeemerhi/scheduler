@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -154,4 +154,4 @@ storiesOf("InterviewerList", module)
   .add("Status", () => <Status message={"Deleting"}/>)
   .add("Error", () => <Error message={"Could not delete appointment"} onClose={action("onClose")}/>)
   .add("Form Create", () => <Form interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")} onChange={action("setInterviewer")}/>)
-  .add("Form Edit", () => <Form name={"Lydia Miller Jones"} interviewers={interviewers} interviewer={interviewers[0]} onChange={action("setInterviewer")} onSave={action("onSave")} onCancel={action("onCancel")}/>)
+  .add("Form Edit", () => <Form name={"Lydia Miller Jones"} interviewers={interviewers} interviewer={interviewers[0].id} onChange={action("setInterviewer")} onSave={action("onSave")} onCancel={action("onCancel")}/>)
