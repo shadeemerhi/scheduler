@@ -6,6 +6,8 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 import { getAppointmentsForDay, getInterviewersForDay ,getInterview } from "helpers/selectors";
+import { transform } from "@babel/core";
+import { useVisualMode } from "hooks/useVisualMode";
 
 export default function Application(props) {
 
@@ -18,6 +20,7 @@ export default function Application(props) {
 
   const appointments =  getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
+  console.log(interviewers);
 
   const setDay = (day) => setState({
     ...state,
@@ -33,11 +36,12 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
+
+    return axios.put(`/api/appointments/${id}`, {...appointment})
+    .then(setState({
       ...state,
       appointments
-    })
-    console.log(appointments);
+    }))
   };
 
   useEffect(() => {
