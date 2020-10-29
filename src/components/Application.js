@@ -24,6 +24,10 @@ export default function Application(props) {
     day
   });
 
+  const bookInterview = function(id, interview) {
+    console.log(id, interview);
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -67,6 +71,7 @@ export default function Application(props) {
               time={appointment.time}
               interview={interview}
               interviewers={interviewers}
+              bookInterview={bookInterview}
             />
           );
         })}
