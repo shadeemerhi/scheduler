@@ -1,12 +1,10 @@
 import React, { Fragment } from "react";
-
 import "components/Appointment/styles.scss";
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import { useVisualMode } from "hooks/useVisualMode";
-import { transformAsync } from "@babel/core";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
