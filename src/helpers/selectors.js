@@ -27,4 +27,32 @@ const getAppointmentsForDay = function(state, day) {
   return output;
 }
 
-module.exports = { getAppointmentsForDay };
+const interviewers =  {
+  "1": {  
+    "id": 1,
+    "name": "Sylvia Palmer",
+    "avatar": "https://i.imgur.com/LpaY82x.png"
+  },
+  "2": {
+    id: 2,
+    name: "Tori Malcolm",
+    avatar: "https://i.imgur.com/Nmx0Qxo.png"
+  }
+}
+
+const getInterview = function(state, interview) {
+  const output = {};
+  
+  if (!interview) {
+    return null;
+  }
+
+  console.log('thing', interview.interviewer.toString());
+  const interviewer = state.interviewers[interview.interviewer];
+  console.log(interviewer);
+  output["student"] = interview.student;
+  output["interviewer"] = interviewer;
+  return output;
+}
+
+module.exports = { getAppointmentsForDay, getInterview };
