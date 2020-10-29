@@ -1,6 +1,6 @@
 const { useState } = require("react");
 
-const useVisualMode = function(initial) {
+export const useVisualMode = function(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
@@ -24,5 +24,3 @@ const useVisualMode = function(initial) {
   return { mode, transition, back };
 
 }
-
-module.exports = { useVisualMode };
