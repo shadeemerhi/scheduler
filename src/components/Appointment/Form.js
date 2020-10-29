@@ -13,11 +13,6 @@ export default function Form(props) {
     setInterviewer(null);
   }
 
-  const cancel = function() {
-    reset();
-    props.onCancel();
-  }
-
   const save = function() {
     props.onSave(name, interviewer);
   }
