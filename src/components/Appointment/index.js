@@ -7,10 +7,12 @@ import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import { useVisualMode } from "hooks/useVisualMode";
 import { transformAsync } from "@babel/core";
+import Status from "./Status";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 export default function Appointment(props) {
 
@@ -19,6 +21,7 @@ export default function Appointment(props) {
   );
 
   const save = function(name, interviewer) {
+    transition(SAVING);
     const interview = {
       student: name,
       interviewer
@@ -37,7 +40,8 @@ export default function Appointment(props) {
             interviewer={props.interview.interviewer}
           />
         )}
-        {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={() => back()}/>}  
+        {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={() => back()}/>}
+        {mode === SAVING && <Status message={"Saving"}/>}
     </article>
   );
 }
