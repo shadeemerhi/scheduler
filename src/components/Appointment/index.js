@@ -16,6 +16,7 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
 
@@ -32,7 +33,7 @@ export default function Appointment(props) {
     const dbPromise = props.bookInterview(props.id, interview)
     dbPromise.then(() => transition(SHOW));
   };
-  
+
   const deleteInterview = function() {
     transition(DELETING);
     const dbPromise = props.cancelInterview(props.id)
@@ -49,8 +50,10 @@ export default function Appointment(props) {
             student={props.interview.student} 
             interviewer={props.interview.interviewer}
             onDelete={() => transition(CONFIRM)}
+            onEdit={() => transition(EDIT)}
           />
         )}
+        {mode === EDIT && <Form interviewers={props.interviewers} name={props.interview.student} interviewer={props.interview.interviewer.id} onSave={save} onCancel={back}/>}
         {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>}
         {mode === SAVING && <Status message={"Saving"}/>}
         {mode === DELETING && <Status message={"Deleting"}/>}
