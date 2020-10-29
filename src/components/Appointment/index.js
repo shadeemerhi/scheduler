@@ -8,12 +8,14 @@ import Form from "components/Appointment/Form";
 import { useVisualMode } from "hooks/useVisualMode";
 import { transformAsync } from "@babel/core";
 import Status from "./Status";
+import Confirm from "./Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
 
 export default function Appointment(props) {
 
@@ -30,16 +32,13 @@ export default function Appointment(props) {
     const dbPromise = props.bookInterview(props.id, interview)
     dbPromise.then(() => transition(SHOW));
   };
-
-  const cancel = function() {
-    transition(EMPTY);
-  }
-
+  
   const deleteInterview = function() {
     transition(DELETING);
     const dbPromise = props.cancelInterview(props.id)
     dbPromise.then(() => transition(EMPTY));
   }
+
 
   return(
     <article className="appointment">
@@ -49,12 +48,13 @@ export default function Appointment(props) {
           <Show 
             student={props.interview.student} 
             interviewer={props.interview.interviewer}
-            onDelete={deleteInterview}
+            onDelete={() => transition(CONFIRM)}
           />
         )}
-        {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={cancel}/>}
+        {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>}
         {mode === SAVING && <Status message={"Saving"}/>}
         {mode === DELETING && <Status message={"Deleting"}/>}
+        {mode === CONFIRM && <Confirm onCancel={back} onConfirm={deleteInterview}/>}
     </article>
   );
 }
