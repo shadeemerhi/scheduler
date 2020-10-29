@@ -6,6 +6,7 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import { useVisualMode } from "hooks/useVisualMode";
+import { transformAsync } from "@babel/core";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -22,8 +23,8 @@ export default function Appointment(props) {
       student: name,
       interviewer
     }
-    props.bookInterview(props.id, interview);
-    transition(SHOW);
+    const dbPromise = props.bookInterview(props.id, interview)
+    dbPromise.then(() => transition(SHOW));
   };
 
   return(
