@@ -40,4 +40,35 @@ const getInterview = function(state, interview) {
   return output;
 }
 
-module.exports = { getAppointmentsForDay, getInterview };
+const getInterviewersForDay = function(state, day) {
+
+  let output = [];
+  let interviewersArr = null;
+  if (state.days.length === 0) {
+    return [];
+  }
+  for (const dayObj of state.days) {
+    if (dayObj.name === day) {
+      interviewersArr = dayObj.interviewers;
+    }
+  }
+
+  if (!interviewersArr) {
+    return [];
+  }
+
+  console.log(interviewersArr);
+
+  for (const intID of interviewersArr) {
+    for (const key in state.interviewers) {
+      if (parseInt(key) === intID) {
+        output.push(state.interviewers[key])
+        break;
+      }
+    }
+  }
+
+  return output;
+}
+
+module.exports = { getAppointmentsForDay, getInterviewersForDay, getInterview };
