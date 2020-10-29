@@ -9,6 +9,7 @@ import { useVisualMode } from "hooks/useVisualMode";
 import { transformAsync } from "@babel/core";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -17,6 +18,9 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
+
 
 export default function Appointment(props) {
 
@@ -25,19 +29,19 @@ export default function Appointment(props) {
   );
 
   const save = function(name, interviewer) {
-    transition(SAVING);
+    transition(SAVING, true);
     const interview = {
       student: name,
       interviewer
     }
     const dbPromise = props.bookInterview(props.id, interview)
-    dbPromise.then(() => transition(SHOW));
+    dbPromise.then(() => transition(SHOW)).catch(error => transition(ERROR_SAVE, true));
   };
 
   const deleteInterview = function() {
-    transition(DELETING);
+    transition(DELETING, true);
     const dbPromise = props.cancelInterview(props.id)
-    dbPromise.then(() => transition(EMPTY));
+    dbPromise.then(() => transition(EMPTY)).catch(error => transition(ERROR_DELETE, true));
   }
 
 
@@ -58,6 +62,8 @@ export default function Appointment(props) {
         {mode === SAVING && <Status message={"Saving"}/>}
         {mode === DELETING && <Status message={"Deleting"}/>}
         {mode === CONFIRM && <Confirm onCancel={back} onConfirm={deleteInterview}/>}
+        {mode === ERROR_SAVE && <Error message={"There was an error saving your appointment"} onClose={back}/>}
+        {mode === ERROR_DELETE && <Error message={"There was an error deleting your appointment"} onClose={back}/>}
     </article>
   );
 }
