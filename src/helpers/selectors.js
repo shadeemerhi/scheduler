@@ -47,9 +47,7 @@ const getInterview = function(state, interview) {
     return null;
   }
 
-  console.log('thing', interview.interviewer.toString());
   const interviewer = state.interviewers[interview.interviewer];
-  console.log(interviewer);
   output["student"] = interview.student;
   output["interviewer"] = interviewer;
   return output;
