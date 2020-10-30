@@ -57,8 +57,6 @@ const getInterviewersForDay = function(state, day) {
     return [];
   }
 
-  console.log(interviewersArr);
-
   for (const intID of interviewersArr) {
     for (const key in state.interviewers) {
       if (parseInt(key) === intID) {

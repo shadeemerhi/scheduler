@@ -14,7 +14,6 @@ export const useApplicationData = function() {
     }
     socket.onmessage = function(event) {
       const data = JSON.parse(event.data);
-      console.log(data);
       if (data.type === SET_INTERVIEW) {
         dispatch({type: data.type, id: data.id, interview: data.interview})
       }
@@ -74,7 +73,6 @@ export const useApplicationData = function() {
       axios.get('/api/appointments'),
       axios.get('/api/interviewers'),
     ]).then((all) => {
-      console.log(all);
       // setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
       dispatch({type: SET_APPLICATION_DATA, days: all[0].data, appointments: all[1].data, interviewers: all[2].data})
     });
