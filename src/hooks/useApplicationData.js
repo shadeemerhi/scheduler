@@ -8,7 +8,6 @@ export const useApplicationData = function() {
   const SET_INTERVIEW = "SET_INTERVIEW";
 
   function reducer(state, action) {
-    console.log(action.type);
 
     switch(action.type) {
       case SET_DAY:
