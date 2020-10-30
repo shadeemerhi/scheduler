@@ -9,6 +9,9 @@ export const useApplicationData = function() {
     socket.onopen = function(event) {
       socket.send("ping");
     }
+    socket.onmessage = function(event) {
+      console.log("Message Received:", event.data);
+    }
   },[]);
 
 
