@@ -7,6 +7,20 @@ export const useApplicationData = function() {
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const SET_INTERVIEW = "SET_INTERVIEW";
 
+  useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    socket.onopen = function(event) {
+      socket.send("ping");
+    }
+    socket.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      console.log(data);
+      if (data.type === SET_INTERVIEW) {
+        dispatch({type: data.type, id: data.id, interview: data.interview})
+      }
+    }
+  },[]);
+
   function reducer(state, action) {
 
     switch(action.type) {
