@@ -43,8 +43,6 @@ export const useApplicationData = function() {
     } 
   }
 
-
-
   const [state, dispatch] = useReducer(reducer, {
     days: [],
     day: "Monday",
