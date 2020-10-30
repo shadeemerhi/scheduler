@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// const WebSocket = require("ws");
 
 export const useApplicationData = function() {
+
+  useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    socket.onopen = function(event) {
+      socket.send("ping");
+    }
+  },[]);
+
 
   const [state, setState] = useState({
     days: [],
