@@ -6,7 +6,6 @@ export const useApplicationData = function() {
   const [state, setState] = useState({
     days: [],
     day: "Monday",
-
     appointments: {},
     interviewers: {}
   });
@@ -27,20 +26,15 @@ export const useApplicationData = function() {
     day
   });
 
-  const updateSpots = function(keyWord, day, days) {
+  const updateSpots = function(removing, day, days) {
 
-    const dayOfInterestArr = days.filter((currDay) => currDay.name === day); // Monday
+    const dayOfInterestArr = days.filter((currDay) => currDay.name === day);
     const dayOfInterest = dayOfInterestArr[0];
-    if (keyWord == "Delete") {
+    if (removing) {
       dayOfInterest.spots += 1;
     } else {
       dayOfInterest.spots -= 1;
     }
-    setState({
-      ...state,
-
-    })
-
   }
 
   const cancelInterview = function(id) {
@@ -54,15 +48,15 @@ export const useApplicationData = function() {
       [id]: appointment
     }
 
-    updateSpots("Delete", state.day, state.days);
-
     return axios.delete(`/api/appointments/${id}`, {...appointment})
-    .then(() => setState({
-      ...state,
-      appointments
-    }))
-
-  }
+    .then(() => {
+      updateSpots(true, state.day, state.days);
+      setState({
+        ...state,
+        appointments
+      })
+    })
+  };
 
   const bookInterview = function(id, interview) {
     const appointment = {
@@ -74,14 +68,16 @@ export const useApplicationData = function() {
       [id]: appointment
     };
 
-
-    updateSpots("Increase", state.day, state.days);
-
     return axios.put(`/api/appointments/${id}`, {...appointment})
-    .then(() => setState({
-      ...state,
-      appointments
-    }))
+    .then(() => {
+      if(!state.appointments[id].interview) {
+        updateSpots(false, state.day, state.days);
+      }
+      setState({
+        ...state,
+        appointments
+      })
+    })
   };
 
   return {
