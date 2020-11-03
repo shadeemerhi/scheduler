@@ -5,6 +5,8 @@ import { render, cleanup, waitForElement, fireEvent, getByText,
 
 import Application from "components/Application";
 
+import axios from "axios";
+
 afterEach(cleanup);
 
 describe("Application", () => {
@@ -86,5 +88,9 @@ describe("Application", () => {
     const days = getAllByTestId(container, "day");
     const day = days.find(day => queryByText(day, "Monday"));
     expect(queryByText(day, "1 spot remaining")).toBeInTheDocument();
+  });
+
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
   });
 });
