@@ -18,12 +18,10 @@ describe("Application", () => {
   });
 
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
     const appointments = getAllByTestId(container, "appointment");
-    // console.log(prettyDOM(appointments));
     const appointment = appointments[0];
-    // console.log(prettyDOM(appointment));
     fireEvent.click(getByAltText(appointment, "Add"));
 
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
