@@ -90,7 +90,56 @@ describe("Application", () => {
     expect(queryByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 
-  it("shows the save error when failing to save an appointment", () => {
+  it("shows the save error when failing to save an appointment", async () => {
+    // axios.put.mockRejectedValueOnce();
+    // Test that after a user tries to book an appointment and it fails, it goes back to "Add" Form
     axios.put.mockRejectedValueOnce();
+    const { container } = render(<Application />);
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[0];
+    fireEvent.click(getByAltText(appointment, "Add"));
+
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    await waitForElement(() => queryByText(appointment, "There was an error saving your appointment"));
+    expect(getByText(appointment, "Error")).toBeInTheDocument();
+    fireEvent.click(getByAltText(appointment, "Close"));
+    expect(getByAltText(appointment, "Add")).toBeInTheDocument();
+
+    const days = getAllByTestId(container, "day");
+    const day = days.find(day => queryByText(day, "Monday"));
+    expect(queryByText(day, "1 spot remaining")).toBeInTheDocument();
+  });
+
+  it("shows the delete error when failing to delete an appointment", async () => {
+    axios.delete.mockRejectedValueOnce();
+    const { container } = render(<Application />);
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments.find(appointment => queryByText(appointment, "Archie Cohen"));
+    fireEvent.click(getByAltText(appointment, "Delete"));
+
+    expect(queryByText(appointment, "Delete the appointment?")).toBeInTheDocument();
+
+    fireEvent.click(queryByText(appointment, "Confirm"));
+
+    expect(queryByText(appointment, "Deleting")).toBeInTheDocument();
+
+    await waitForElement(() => queryByText(appointment, "There was an error deleting your appointment"));
+    expect(getByText(appointment, "Error")).toBeInTheDocument();
+    fireEvent.click(getByAltText(appointment, "Close"));
+    expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
+
+    const days = getAllByTestId(container, "day");
+    const day = days.find(day => queryByText(day, "Monday"));
+    expect(queryByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 });
