@@ -5,13 +5,7 @@ The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/
 
 ## Final Product
 
-![""]()
-![""]()
-![""]()
-![""]()
-![""]()
-![""]()
-![""]()
+![""](https://media.giphy.com/media/PkvRkZ0GKFLYAAKjjI/giphy.gif)
 
 ## Dependencies
 
