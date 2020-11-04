@@ -6,16 +6,16 @@ The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/
 ## Final Product
 
 ### Booking an interview
-![""]()
+!["Booking an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/booking.gif)
 
 ### Editing an interview
-![""]()
+!["Editing an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/editing.gif)
 
 ### Cancelling an interview
-![""]()
+!["Cancelling an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/deleting.gif)
 
 ### Multiple clients with WebSocket
-![""]()
+!["Multiple clients with WebSocket"](https://github.com/shadeemerhi/scheduler/blob/master/docs/websocket.gif)
 
 ## Dependencies
 
