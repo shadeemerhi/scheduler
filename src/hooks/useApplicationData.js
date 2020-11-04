@@ -8,7 +8,7 @@ export const useApplicationData = function() {
   const SET_INTERVIEW = "SET_INTERVIEW";
 
   useEffect(() => {
-    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    const socket = new WebSocket("wss://interview-scheduler-sm.herokuapp.com/");
     socket.onopen = function(event) {
       socket.send("ping");
     }
