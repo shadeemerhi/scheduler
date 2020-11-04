@@ -5,18 +5,30 @@ The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/
 
 ## Final Product
 
-![""](https://media.giphy.com/media/PkvRkZ0GKFLYAAKjjI/giphy.gif)
+### Booking an interview
+![""]()
+
+### Editing an interview
+![""]()
+
+### Cancelling an interview
+![""]()
+
+### Multiple clients with WebSocket
+![""]()
 
 ## Dependencies
 
 - React
 - Axios
-- Storybook
-- Babel
-- Webpack
+
+## Dev Dependencies
+
+- React Testing Library
 - Jest
-- normalize.css
-- classnames
+- Cypress
+- Storybook
+- jest-websocket-mock
 
 ## Setup
 
@@ -32,6 +44,12 @@ npm start
 
 ```sh
 npm test
+```
+
+## Running Cypress Test Framework
+
+```sh
+npm run cypress
 ```
 
 ## Running Storybook Visual Testbed
