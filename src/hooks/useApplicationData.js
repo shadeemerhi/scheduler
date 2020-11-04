@@ -8,7 +8,7 @@ export const useApplicationData = function() {
   const SET_INTERVIEW = "SET_INTERVIEW";
 
   useEffect(() => {
-    const socket = new WebSocket("wss://interview-scheduler-sm.herokuapp.com/");
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
     socket.onopen = function(event) {
       socket.send("ping");
     }
@@ -101,7 +101,6 @@ export const useApplicationData = function() {
 
     return axios.delete(`/api/appointments/${id}`, {...appointment})
     .then(() => {
-      console.log("in deleting");
       dispatch({type: SET_INTERVIEW, id, interview: null})
     })
   };
