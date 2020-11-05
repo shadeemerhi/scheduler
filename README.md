@@ -29,6 +29,12 @@ The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/
 
 - React
 - Axios
+- Express
+- node-postgres
+- websockets/ws
+- dotenv
+- body-parser
+- cors
 
 ## Dev Dependencies
 
