@@ -1,21 +1,29 @@
 # Interview Scheduler
-- A React application that allows users to book and cancel interviewers with an interviewer of their choice. A concise API together with a WebSocket server enables users to have a real-time experience. The API server has been deployed using Heroku, and the client is deployed on Netlify.
+A React application that allows users to book and cancel interviewers with an interviewer of their choice. A concise API together with a WebSocket server enables users to have a real-time experience. The API server has been deployed using Heroku, and the client is deployed on Netlify.
 
-The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/).
+The backend was built using Node.js and Express in combination with PostgreSQL.
+
+The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/). Please note that the app may contain empty data on the first load as the Heroku server is configured to sleep after 30 minutes of inactivity.
 
 ## Final Product
 
 ### Booking an interview
-![""]()
+!["Booking an interview"]()
 
 ### Editing an interview
-![""]()
+!["Editing an interview"]()
 
 ### Cancelling an interview
-![""]()
+!["Cancelling an interview"]()
 
-### Multiple clients with WebSocket
-![""]()
+### Empty field error
+!["Empty field error"]()
+
+### Booking with multiple clients with WebSocket
+!["Booking with multiple clients with WebSocket"]()
+
+### Editing with multiple clients with WebSocket
+!["Editing with multiple clients with WebSocket"]()
 
 ## Dependencies
 
