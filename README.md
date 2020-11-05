@@ -1,5 +1,5 @@
 # Interview Scheduler
-A full stack React application that allows users to book and cancel interviewers with an interviewer of their choice. A concise API together with a WebSocket server enables users to have a real-time experience. The API server has been deployed using Heroku, and the client is deployed on Netlify.
+A full stack React application that allows users to book and cancel interviews with an interviewer of their choice. A concise API together with a WebSocket server enables users to have a real-time experience. The API server has been deployed using Heroku, and the client is deployed on Netlify.
 
 The backend was built using Node.js and Express in combination with PostgreSQL.
 
