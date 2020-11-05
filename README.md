@@ -8,22 +8,22 @@ The live site can be viewed [here](https://amazing-engelbart-5c8395.netlify.app/
 ## Final Product
 
 ### Booking an interview
-!["Booking an interview"]()
+!["Booking an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/booking-appt.gif)
 
 ### Editing an interview
-!["Editing an interview"]()
+!["Editing an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/editing-appt.gif)
 
 ### Cancelling an interview
-!["Cancelling an interview"]()
+!["Cancelling an interview"](https://github.com/shadeemerhi/scheduler/blob/master/docs/deleting-appt.gif)
 
 ### Empty field error
-!["Empty field error"]()
+!["Empty field error"](https://github.com/shadeemerhi/scheduler/blob/master/docs/error-empty.gif)
 
 ### Booking with multiple clients with WebSocket
-!["Booking with multiple clients with WebSocket"]()
+!["Booking with multiple clients with WebSocket"](https://github.com/shadeemerhi/scheduler/blob/master/docs/ws-book.gif)
 
 ### Editing with multiple clients with WebSocket
-!["Editing with multiple clients with WebSocket"]()
+!["Editing with multiple clients with WebSocket"](https://github.com/shadeemerhi/scheduler/blob/master/docs/ws-edit.gif)
 
 ## Dependencies
 
